@@ -1,0 +1,57 @@
+{
+    "RuleName": "DiscountRule",
+    "TenantID": "All_Tenants",
+    "CultureID": "en-GB",
+    "IsDisabled": false,
+    "FailureValue": 0.00,
+    "ValueTypeName": "Decimal",
+    "RuleEventDetails": {
+        "EventTypeName": "Conditionals.Core.ConsoleDemos.Areas.JsonRules.DecimalRuleEvent",
+        "EventWhenType": "OnSuccess"
+    },
+    "ConditionSets": [
+        {
+            "SetName": "StudentRate",
+            "SetValue": 0.10,
+            "BooleanConditions": {
+                "ConditionName": "IsStudent",
+                "ContextTypeName": "Conditionals.Core.ConsoleDemos.Common.Models.Customer",
+                "ExpressionToEvaluate": "c =\u003E (c.CustomerType.ToString() == \u0022Student\u0022)",
+                "FailureMessage": "Customer @{CustomerName} is not a student",
+                "EvaluatorTypeName": "PredicateConditionEvaluator",
+                "ConditionType": "LambdaPredicate",
+                "AdditionalInfo": {},
+                "ConditionEventDetails": {
+                    "EventTypeName": "Conditionals.Core.ConsoleDemos.Areas.JsonRules.CustomerConditionEvent",
+                    "EventWhenType": "OnSuccessOrFailure"
+                }
+            }
+        },
+        {
+            "SetName": "PensionerRate",
+            "SetValue": 0.15,
+            "BooleanConditions": {
+                "ConditionName": "IsPensioner",
+                "ContextTypeName": "Conditionals.Core.ConsoleDemos.Common.Models.Customer",
+                "ExpressionToEvaluate": "c =\u003E (c.CustomerType.ToString() == \u0022Pensioner\u0022)",
+                "FailureMessage": "Customer @{CustomerName} is not a pensioner",
+                "EvaluatorTypeName": "PredicateConditionEvaluator",
+                "ConditionType": "LambdaPredicate",
+                "AdditionalInfo": {}
+            }
+        },
+        {
+            "SetName": "SubscriberRate",
+            "SetValue": 0.20,
+            "BooleanConditions": {
+                "ConditionName": "IsSubscriber",
+                "ContextTypeName": "Conditionals.Core.ConsoleDemos.Common.Models.Customer",
+                "ExpressionToEvaluate": "c =\u003E (c.CustomerType.ToString() == \u0022Subscriber\u0022)",
+                "FailureMessage": "Customer @{CustomerName} is not a paid subscriber",
+                "EvaluatorTypeName": "PredicateConditionEvaluator",
+                "ConditionType": "LambdaPredicate",
+                "AdditionalInfo": {}
+            }
+        }
+    ]
+}

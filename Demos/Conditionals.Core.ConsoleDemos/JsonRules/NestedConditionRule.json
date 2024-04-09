@@ -1,0 +1,59 @@
+{
+    "RuleName": "NestedConditionRule",
+    "TenantID": "All_Tenants",
+    "CultureID": "en-GB",
+    "IsDisabled": false,
+    "FailureValue": {},
+    "ValueTypeName": "None",
+    "ConditionSets": [
+        {
+            "SetName": "NestedConditionSet",
+            "SetValue": {},
+            "BooleanConditions": {
+                "Operator": "OrElse",
+                "LeftOperand": {
+                    "Operator": "AndAlso",
+                    "LeftOperand": {
+                        "ConditionName": "ConditionOne",
+                        "ContextTypeName": "Conditionals.Core.ConsoleDemos.Common.Models.Customer",
+                        "ExpressionToEvaluate": "c =\u003E (c.CustomerID == 101)",
+                        "FailureMessage": "Failed customer number condition",
+                        "EvaluatorTypeName": "PredicateConditionEvaluator",
+                        "ConditionType": "LambdaPredicate",
+                        "AdditionalInfo": {}
+                    },
+                    "RightOperand": {
+                        "ConditionName": "ConditionTwo",
+                        "ContextTypeName": "Conditionals.Core.ConsoleDemos.Common.Models.CustomerAccount",
+                        "ExpressionToEvaluate": "a =\u003E (a.AccountNo \u003E 5555)",
+                        "FailureMessage": "Failed account number conditions",
+                        "EvaluatorTypeName": "PredicateConditionEvaluator",
+                        "ConditionType": "LambdaPredicate",
+                        "AdditionalInfo": {}
+                    }
+                },
+                "RightOperand": {
+                    "Operator": "AndAlso",
+                    "LeftOperand": {
+                        "ConditionName": "ConditionThree",
+                        "ContextTypeName": "Conditionals.Core.ConsoleDemos.Common.Models.Address",
+                        "ExpressionToEvaluate": "a =\u003E (a.Country == \u0022United Kingdom\u0022)",
+                        "FailureMessage": "Failed the country condition",
+                        "EvaluatorTypeName": "PredicateConditionEvaluator",
+                        "ConditionType": "LambdaPredicate",
+                        "AdditionalInfo": {}
+                    },
+                    "RightOperand": {
+                        "ConditionName": "ConditionFour",
+                        "ContextTypeName": "Conditionals.Core.ConsoleDemos.Common.Models.OrderHistoryView",
+                        "ExpressionToEvaluate": "o =\u003E (o.TotalOrders \u003E= 5)",
+                        "FailureMessage": "Failed the total order condition",
+                        "EvaluatorTypeName": "PredicateConditionEvaluator",
+                        "ConditionType": "LambdaPredicate",
+                        "AdditionalInfo": {}
+                    }
+                }
+            }
+        }
+    ]
+}
