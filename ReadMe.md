@@ -3,7 +3,7 @@
 [download-image]: https://img.shields.io/nuget/dt/Conditionals.Core
 [download-url]: https://www.nuget.org/packages/Conditionals.Core
 <h1>
-<img src="https://raw.github.com/code-dispenser/Conditionals/main/Assets/icon-64.png" align="center" alt="Conditionals icon" /> Conditionals
+<img src="https://raw.github.com/code-dispenser/Conditionals/main/Assets/icons-64.png" align="center" alt="Conditionals icon" /> Conditionals
 </h1>
 <!--
 # ![icon](https://raw.github.com/code-dispenser/Conditionals/main/Assets/icon-64.png) Conditionals
@@ -50,8 +50,7 @@ compiled lambda predicate from the string representation in any json rule files 
 project/nuget package.
 
 
-<img src="https://raw.githubusercontent.com/code-dispenser/Conditionals/main/Assets/icon-64.png" align="middle" height="32px" alt="Conditionals icon" />
-
+<img src="https://raw.githubusercontent.com/code-dispenser/Conditionals/main/Assets/icons-64.png" align="middle" height="32px" alt="Conditionals icon" />
 <a target="_blank" href="https://icons8.com/icon/kxE6S5YOUvM6/if">If</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
 <!--
 ![icon](https://raw.github.com/code-dispenser/Conditionals/main/Assets/icon-48.png) Thanks also to Peerapak Takpho the icon creator, which I found on [freepik.com](https://www.freepik.com/icon/setting_7012934).
