@@ -1,4 +1,4 @@
-[![.NET](https://github.com/code-dispenser/Conditionals/actions/workflows/dotnet.yml/badge.svg)](https://github.com/code-dispenser/Conditionals/actions/workflows/dotnet.yml) [![Coverage Status](https://coveralls.io/repos/github/code-dispenser/Conditionals/badge.svg?branch=main)](https://coveralls.io/github/code-dispenser/Conditionals?branch=main) [![Nuget download][download-image]][download-url]
+[![.NET](https://github.com/code-dispenser/Conditionals/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/code-dispenser/Conditionals/actions/workflows/dotnet.yml) [![Coverage Status](https://coveralls.io/repos/github/code-dispenser/Conditionals/badge.svg?branch=main)](https://coveralls.io/github/code-dispenser/Conditionals?branch=main) [![Nuget download][download-image]][download-url]
 
 [download-image]: https://img.shields.io/nuget/dt/Conditionals.Core
 [download-url]: https://www.nuget.org/packages/Conditionals.Core
