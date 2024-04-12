@@ -19,7 +19,7 @@ public class StoreCardApplicationMultipleDataContexts(ConditionEngine conditionE
     {
         var conditions = new PredicateCondition<Customer>("AgeCondition", c => new DateTime(c.DOB.Year, c.DOB.Month, c.DOB.Day).AddYears(18) < DateTime.Now, "You must be over 18 to apply")
                          .AndAlso(new PredicateCondition<Address>("CountryCondition", a => a.Country == "United Kingdom", "You must be a resident of the United Kingdom"))
-                         .AndAlso(new PredicateCondition<OrderHistoryView>("OrderCondition", o => o.TotalOrders >= 5, "ou must have made at least five purchases against your account"));
+                         .AndAlso(new PredicateCondition<OrderHistoryView>("OrderCondition", o => o.TotalOrders >= 5, "You must have made at least five purchases against your account"));
         /*
             * conditions form boolean expression pairs that short-circuit using AndAlso (&&) or OrElse (||) i.e the above nesting has a left and right, with the left having a left and right
             * ((AgeCondition AndAlso CountryCondition) AndAlso OrderCondition). There can be any depth of these pairings which will be shown/discussed later.
@@ -47,7 +47,7 @@ public class StoreCardApplicationMultipleDataContexts(ConditionEngine conditionE
         */
 
         _ = await _conditionEngine.EvaluateRule<None>(storeCardRule.RuleName, conditionData)
-                                    .OnResult(success => Console.WriteLine($"Applicant {customerID}, application approved in {success.RuleTimeMilliseconds}ms with {success.EvaluationCount} evaluations"),
+                                    .OnResult(success => WriteLine($"Applicant {customerID}, application approved in {success.RuleTimeMilliseconds}ms with {success.EvaluationCount} evaluations"),
                                                 failure =>
                                                 {
                                                     WriteLine($"Applicant {customerID} application rejected. {failure.EvaluationCount} evaluation(s) in {failure.RuleTimeMilliseconds}ms");
