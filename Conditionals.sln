@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Unit Tests", "02 - Uni
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Integration Tests", "03 - Integration Tests", "{2D57790B-6C52-427A-B9F1-9C2264C3AE18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conditionals.Core.ConsoleDemos", "Demos\Conditionals.Core.ConsoleDemos\Conditionals.Core.ConsoleDemos.csproj", "{8F1627D8-C7A9-43AB-98D6-DF7AFBA09CBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Conditionals.Core.ConsoleDemos", "Demos\Conditionals.Core.ConsoleDemos\Conditionals.Core.ConsoleDemos.csproj", "{8F1627D8-C7A9-43AB-98D6-DF7AFBA09CBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
