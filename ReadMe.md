@@ -15,10 +15,10 @@
 Docs in Progress so not on nuget yet ....
 
 
-Conditionals is essentially a Boolean expression-based rules engine, based on my other project [Devs' Rule](https://github.com/code-dispenser/DevsRule). It operates by evaluating conditions, which can be conceptualized as "condition trees." These 
+Conditionals is essentially a Boolean expression-based rules engine, based on my other project [Devs' Rule](https://github.com/code-dispenser/DevsRule). It operates by evaluating conditions, which can be conceptualised as "condition trees." These 
 trees consist of left and right operands, combined with the logical short-circuiting AndAlso (&&) and OrElse (||) operators.
 
-**Note:** Conditionals is my preferred library. The main differences include typed result values, condition expression trees rather than just conditions ANDed together,the removal of events that 
+**Note:** Conditionals is my preferred library. The main differences include typed result values, condition expression trees rather than just conditions ANDed together, the removal of events that 
 you could wait on and a completely different JSON structure due to the condition trees.
 
 Rules can be created in code (the preferred method) and exported (or manually created) as JSON files, either code based rules or JSON rule files can be ingested by the condition engine. This provides flexibility by allowing rule changes without 
@@ -40,7 +40,7 @@ The normal/full processing path in pseudocode would be as follows, but you can p
 var result = await ConditionEngine.Evaluate -> (get)Rule.Evaluate -> (foreach)ConditionSet.Evaluate -> (recurse)BooleanConditionTree.Evaluate
 ```
 
-Both rules and individual conditions can have an associated event. These events, depending on configuration, are raised on success, on failure or either. Events can be subscribed to 
+Both rules and individual conditions can have an associated event. These events, depending on configuration, are raised on success, on failure or on either. Events can be subscribed to 
 for use in forms and view models which can handle the events using local event handlers. Additionally, there's the ability to register dynamic event handlers. These dynamic event handlers are registered with your 
 chosen IOC container and are instantiated with any injected dependencies every time their associated event is published via the condition engine.
 
