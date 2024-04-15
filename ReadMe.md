@@ -61,7 +61,7 @@ At its simplest, it's a matter of creating an instance of the [ConditionEngine](
 For the majority of applications it is envisaged that the [ConditionEngine](https://github.com/code-dispenser/Conditionals/blob/main/Source/Conditionals.Core/Areas/Engine/ConditionEngine.cs) will be added to an IOC container as a Singleton/SingleInstance and injected into the required areas of the application, however, there is no technical reason preventing you from having multiple isolated instances of the [ConditionEngine](https://github.com/code-dispenser/Conditionals/blob/main/Source/Conditionals.Core/Areas/Engine/ConditionEngine.cs), each maintaining its own set of cached rules and evaluators if that better meets your requirements.
 
 **Note:** The following is the first example taken from demo project included in the [Conditionals Git repository](https://github.com/code-dispenser/Conditionals/tree/main) which provides examples for all aspects of the library 
-```
+```c#
 var conditions = new PredicateCondition<Customer>("AgeCondition", c => new DateTime(c.DOB.Year, c.DOB.Month, c.DOB.Day).AddYears(18) < DateTime.Now, "You must be over 18 to apply")
                     .AndAlso(new PredicateCondition<Address>("CountryCondition", a => a.Country == "United Kingdom", "You must be a resident of the United Kingdom"))
                     .AndAlso(new PredicateCondition<OrderHistoryView>("OrderCondition", o => o.TotalOrders >= 5, "You must have made at least five purchases against your account"));
