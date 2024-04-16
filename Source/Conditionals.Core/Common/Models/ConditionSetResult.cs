@@ -74,6 +74,6 @@ public class ConditionSetResult<T>(string setName, T setValue, bool isSuccess, i
     /// <summary>
     /// Gets a list of any exceptions that occurred during the processing of the condition set and its condition tree.
     /// </summary>
-    public List<Exception>  ExecutionExceptions     { get; } = exceptions ?? [];
+    public List<Exception>  Exceptions     { get; } = exceptions ?? [];
 
 }

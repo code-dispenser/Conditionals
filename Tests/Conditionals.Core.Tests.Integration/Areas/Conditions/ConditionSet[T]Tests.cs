@@ -102,7 +102,7 @@ public class ConditionSetTests
 
         var conditionSetResult = await conditionSet.Evaluate(resolver, conditionData);
 
-        conditionSetResult.ExecutionExceptions.Count.Should().Be(1);
+        conditionSetResult.Exceptions.Count.Should().Be(1);
     }
 
 

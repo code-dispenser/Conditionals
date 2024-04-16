@@ -52,7 +52,7 @@ public class ConditionSetResults(ConditionEngine conditionEngine)
         WriteLine($"The set: {conditionSetResult.SetName} evaluated to {conditionSetResult.IsSuccess} with a returning set value of: {conditionSetResult.SetValue}");
         WriteLine($"The order of precedence was: {conditionSetResult.EvaluationPrecedence}");
         WriteLine($"The set took a total of {conditionSetResult.TotalMilliseconds}ms to complete {conditionSetResult.TotalEvaluations} condition evaluations and build the result.");
-        WriteLine($"There were {conditionSetResult.FailureMessages.Count} failure messages and {conditionSetResult.ExecutionExceptions.Count} execution exceptions");
+        WriteLine($"There were {conditionSetResult.FailureMessages.Count} failure messages and {conditionSetResult.Exceptions.Count} exceptions");
 
         var conditionResult = conditionSetResult.ResultChain;
         var conditionNames  = String.Empty;

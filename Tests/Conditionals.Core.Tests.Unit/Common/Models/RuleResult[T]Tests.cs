@@ -13,7 +13,7 @@ public class RuleResultTests
         var conditionSetResult = new ConditionSetResult<string>("SetName", "SetValue", true, 1, 1000, "SomePath", null, ["Failed"], [new SystemException()]);
 
         var ruleResult = new RuleResult<string>("RuleName", true, "FailureValue", "SetName", "SetValue", "TenantID", 1000, 1, true, [.. conditionSetResult.FailureMessages],
-                                                [.. conditionSetResult.ExecutionExceptions], conditionSetResult, null);
+                                                [.. conditionSetResult.Exceptions], conditionSetResult, null);
 
         ruleResult.Should().Match<RuleResult<string>>(r => r.RuleName == "RuleName" && r.FailureValue == "FailureValue" && r.IsSuccess == true && r.IsDisabled == true
                                                    && r.SetValue == "SetValue" && r.EvaluationCount == 1 && r.Exceptions.Count == 1 && r.FinalSetName == "SetName"

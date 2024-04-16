@@ -18,7 +18,7 @@ public class ConditionSetResultTests
 
         conditionSetResult.Should().Match<ConditionSetResult<string>>(c => c.SetName == "SetName" && c.SetValue == "SetValue" && c.IsSuccess == true
                                                                   && c.TotalMilliseconds == 1 && c.TotalEvaluations == 1 && c.TotalMicroseconds == 1000 && c.ResultChain == conditionResult
-                                                                  && c.EvaluationPrecedence == "SomePath" && c.FailureMessages.Count == 1 && c.ExecutionExceptions.Count == 1);
+                                                                  && c.EvaluationPrecedence == "SomePath" && c.FailureMessages.Count == 1 && c.Exceptions.Count == 1);
 
     }
 
@@ -41,11 +41,11 @@ public class ConditionSetResultTests
     }
 
     [Fact]
-    public void A_null_execution_exception_list_should_default_to_an_empty_list()
+    public void A_null_exception_list_should_default_to_an_empty_list()
     {
         var conditionSetResult = new ConditionSetResult<string>("SetName", "SetValue", true, 1, 1000, "Some Path", null, null!, null!);
 
-        conditionSetResult.ExecutionExceptions.Count.Should().Be(0);
+        conditionSetResult.Exceptions.Count.Should().Be(0);
     }
 
     [Fact]

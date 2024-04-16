@@ -147,7 +147,7 @@ public class Rule<T> : IRule<T>
 
         while (checkResult is not null)
         {
-            exceptions.InsertRange(0, checkResult.ExecutionExceptions);
+            exceptions.InsertRange(0, checkResult.Exceptions);
             failureMessages.InsertRange(0, checkResult.FailureMessages);
             evaluationCount += checkResult.TotalEvaluations;
             checkResult = checkResult.PreviousSetResult;
@@ -189,7 +189,7 @@ public class Rule<T> : IRule<T>
 
         while (result != null)
         {
-            if (result.ExecutionExceptions.Count > 0) exceptions.AddRange(result.ExecutionExceptions);
+            if (result.Exceptions.Count > 0) exceptions.AddRange(result.Exceptions);
             result = result.PreviousSetResult;
         }
 
