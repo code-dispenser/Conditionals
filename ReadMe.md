@@ -102,7 +102,7 @@ _ = await _conditionEngine.EvaluateRule<None>(storeCardRule.RuleName, conditionD
 ```
 
 **Note:** Once a rule is cached in the condition engine we only need to call the condition engine with the name of the rule, passing in the condition data.
-```
+```c#
 var ruleResult = await _conditionEngine.EvaluateRule<None>(""StoreCreditCardRule", conditionData)
 ```
 Rules in JSON format can are also added using the **IngestRuleFromJson&lt;T&gt;(string ruleJson)** or **IngestRuleFromJson(string ruleJson)** methods on the condition engine. These methods transform the JSON into a **Rule** and 
