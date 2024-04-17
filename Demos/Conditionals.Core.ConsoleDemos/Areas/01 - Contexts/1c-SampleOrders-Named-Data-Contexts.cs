@@ -55,8 +55,8 @@ namespace Conditionals.Core.ConsoleDemos.Areas.Contexts
 
             WriteLine($"Rule succeeded {ruleResult.IsSuccess}, discount to apply {(ruleResult.IsSuccess ? ruleResult.SetValue : ruleResult.FailureValue) * 100:0'%'}");
             WriteLine($"Evaluation count {ruleResult.EvaluationCount}, {ruleResult.FailureMessages.Count} failures: {String.Concat("\r\n", String.Join("\r\n",ruleResult.FailureMessages), "\r\n")}");
-            WriteLine($"Data for successful condition: {ruleResult.ConditionSetChain!.ResultChain!.EvaluationData}"); 
-            WriteLine($"Evaluation order: {ruleResult.ConditionSetChain!.EvaluationPrecedence}");
+            WriteLine($"Data for successful condition: {ruleResult.SetResultChain!.ResultChain!.EvaluationData}"); 
+            WriteLine($"Evaluation order: {ruleResult.SetResultChain!.EvaluationPrecedence}");
 
         }
     }

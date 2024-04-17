@@ -17,7 +17,7 @@ public class RuleResultTests
 
         ruleResult.Should().Match<RuleResult<string>>(r => r.RuleName == "RuleName" && r.FailureValue == "FailureValue" && r.IsSuccess == true && r.IsDisabled == true
                                                    && r.SetValue == "SetValue" && r.EvaluationCount == 1 && r.Exceptions.Count == 1 && r.FinalSetName == "SetName"
-                                                   && r.ConditionSetChain!.EvaluationPrecedence == "SomePath" && r.PreviousRuleResult == null && r.RuleTimeMicroseconds == 1000
+                                                   && r.SetResultChain!.EvaluationPrecedence == "SomePath" && r.PreviousRuleResult == null && r.RuleTimeMicroseconds == 1000
                                                    && r.FailureMessages.Count == 1 && r.RuleTimeMilliseconds == 1 && r.TenantID == "TenantID");
     }
 
@@ -30,11 +30,11 @@ public class RuleResultTests
 
         var ruleResultTwo = new RuleResult<int>("RuleTwo", true, 10, "SetName", 42, "TenantID", 1000, 1, true, null!, null!, null, null)
         {
-            ConditionSetChain = conditionSetResult,
+            SetResultChain = conditionSetResult,
             PreviousRuleResult = ruleResultOne
         };
 
-        ruleResultTwo.Should().Match<RuleResult<int>>(r => r.ConditionSetChain!.SetName == "SetName" && r.PreviousRuleResult!.RuleName == "RuleOne");
+        ruleResultTwo.Should().Match<RuleResult<int>>(r => r.SetResultChain!.SetName == "SetName" && r.PreviousRuleResult!.RuleName == "RuleOne");
 
     }
 

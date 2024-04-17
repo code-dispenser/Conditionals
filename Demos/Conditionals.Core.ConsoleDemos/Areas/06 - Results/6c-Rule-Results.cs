@@ -65,7 +65,7 @@ public class RuleResults(ConditionEngine conditionEngine)
         WriteLine();
 
         var setInformation      = new List<string>();
-        var conditionSetResult  = ruleResult.ConditionSetChain;
+        var conditionSetResult  = ruleResult.SetResultChain;
       
 
         while( conditionSetResult != null )

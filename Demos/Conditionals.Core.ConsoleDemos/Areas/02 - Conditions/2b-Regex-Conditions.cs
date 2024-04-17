@@ -50,6 +50,6 @@ public class RegexConditions(ConditionEngine conditionEngine)
             * you can also capture the result in conjunction with the extension methods
          */
 
-        WriteLine(String.Concat("\r\n", result.ConditionSetChain!.EvaluationPrecedence));
+        WriteLine(String.Concat("\r\n", result.SetResultChain!.EvaluationPrecedence));
     }
 }

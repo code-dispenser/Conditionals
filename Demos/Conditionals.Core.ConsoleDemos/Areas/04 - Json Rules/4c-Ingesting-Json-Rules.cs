@@ -44,7 +44,7 @@ public class IngestingJsonRules(ConditionEngine conditionEngine)
             * If its a success the OnSuccess will get called and then it will be passed to OnFailure which will not run
             * its action, it will just pass the result to the next item in the chain if there is one etc.
         */
-        _ = result.OnSuccess(r => WriteLine($"The success value was {r.SetValue} from the last evaluated set {r.ConditionSetChain!.SetName}"))
+        _ = result.OnSuccess(r => WriteLine($"The success value was {r.SetValue} from the last evaluated set {r.SetResultChain!.SetName}"))
                         .OnFailure(r => WriteLine($"The failure value was {r.FailureValue} due to {String.Concat("\r\n",String.Join("\r\n", r.FailureMessages),"\r\n")}"));
 
         WriteLine("Without the type argument and with different customer data.");
@@ -57,7 +57,7 @@ public class IngestingJsonRules(ConditionEngine conditionEngine)
         conditionData = ConditionDataBuilder.AddForAny(DemoData.GetCustomer(4)).Create();//different customer 
 
         _ = await _conditionEngine.EvaluateRule<decimal>("DiscountRule", conditionData)
-                                        .OnResult(act_onSuccess:  r => WriteLine($"The success value was {r.SetValue} from the last evaluated set {r.ConditionSetChain!.SetName}, no. of evaluations {r.EvaluationCount}"),
+                                        .OnResult(act_onSuccess:  r => WriteLine($"The success value was {r.SetValue} from the last evaluated set {r.SetResultChain!.SetName}, no. of evaluations {r.EvaluationCount}"),
                                                   act_onFailure:  r => WriteLine($"The failure value was {r.FailureValue} due to {String.Concat("\r\n", String.Join("\r\n", r.FailureMessages))}"));
     }
 }

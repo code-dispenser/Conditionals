@@ -41,7 +41,7 @@ public class RulesFromJson(ConditionEngine conditionEngine)
         var ruleSubscription      = _conditionEngine.SubscribeToEvent<DecimalRuleEvent>(RuleEventHandler);
 
         _ = await discountRuleFromJson.Evaluate(_conditionEngine.EvaluatorResolver, conditionData, _conditionEngine.EventPublisher)
-                        .OnSuccessOrFailure(r => WriteLine($"The result evaluated to {r.IsSuccess}, the last set to be evaluated was {r.ConditionSetChain!.SetName}"));
+                        .OnSuccessOrFailure(r => WriteLine($"The result evaluated to {r.IsSuccess}, the last set to be evaluated was {r.SetResultChain!.SetName}"));
         
         conditionSubscription.Dispose();
         ruleSubscription.Dispose();

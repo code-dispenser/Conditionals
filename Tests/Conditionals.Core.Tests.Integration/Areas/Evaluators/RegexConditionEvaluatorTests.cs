@@ -57,7 +57,7 @@ public class RegexConditionEvaluatorTests
         //The option value of IgnoreCase is correct so the evaluation should fail.
         var result = await conditionEngine.EvaluateRule<None>("RegexRule", data);
 
-        result.Should().Match<RuleResult<None>>(r => r.IsSuccess == false &&  r.EvaluationCount == 1 && r.ConditionSetChain!.ResultChain!.Exceptions[0] != null);
+        result.Should().Match<RuleResult<None>>(r => r.IsSuccess == false &&  r.EvaluationCount == 1 && r.SetResultChain!.ResultChain!.Exceptions[0] != null);
 
     }
 

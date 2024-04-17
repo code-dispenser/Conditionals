@@ -79,7 +79,7 @@ public class TenantsAndCulture(ConditionEngine conditionEngine)
         var ruleResult              = await _conditionEngine.EvaluateRule<None>("DeviceHealthRule", probeData, CancellationToken.None, null, "Our_Tenants", "en-US");
 
         WriteLine($"The rule: {ruleResult.RuleName}, created for tenant: {ruleResult.TenantID}, evaluated to {ruleResult.IsSuccess}");
-        WriteLine($"The data in the condition was for the tenant: {ruleResult.ConditionSetChain?.ResultChain?.TenantID}");
+        WriteLine($"The data in the condition was for the tenant: {ruleResult.SetResultChain?.ResultChain?.TenantID}");
         WriteLine();
 
         async Task DeviceConditionEventHandler(DeviceConditionEvent deviceConditionEvent, CancellationToken cancellationToken)

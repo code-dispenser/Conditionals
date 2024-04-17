@@ -43,7 +43,7 @@ public class PredicateConditions(ConditionEngine conditionEngine)
          */
 
         _ = await customerRule.Evaluate(_conditionEngine.EvaluatorResolver, conditionData)
-                                .OnSuccess(result => WriteLine($"Predicate with enum as string. Is success: {result.IsSuccess}, data used: {result.ConditionSetChain!.ResultChain!.EvaluationData}"));
+                                .OnSuccess(result => WriteLine($"Predicate with enum as string. Is success: {result.IsSuccess}, data used: {result.SetResultChain!.ResultChain!.EvaluationData}"));
                     
 
         try

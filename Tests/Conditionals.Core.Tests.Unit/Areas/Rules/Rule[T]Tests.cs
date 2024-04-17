@@ -239,7 +239,7 @@ public class RuleTests
 
         var ruleResult = await rule.Evaluate(RuleTests.GetEvaluator,data);
 
-        ruleResult.Should().Match<RuleResult<int>>(r => r.IsSuccess == false && r.EvaluationCount == 2 && r.ConditionSetChain!.SetName == "SetTwo" && r.ConditionSetChain.PreviousSetResult!.SetName == "SetOne");
+        ruleResult.Should().Match<RuleResult<int>>(r => r.IsSuccess == false && r.EvaluationCount == 2 && r.SetResultChain!.SetName == "SetTwo" && r.SetResultChain.PreviousSetResult!.SetName == "SetOne");
 
     }
 
@@ -263,8 +263,8 @@ public class RuleTests
 
         var ruleResult = await rule.Evaluate(RuleTests.GetEvaluator, data);
 
-        ruleResult.Should().Match<RuleResult<int>>(r => r.IsSuccess == false && r.EvaluationCount == 4 && r.ConditionSetChain!.SetName == "SetThree" && r.ConditionSetChain.PreviousSetResult!.SetName == "SetTwo"
-                                                && r.ConditionSetChain!.PreviousSetResult!.PreviousSetResult!.SetName == "SetOne" && r.FailureMessages.Count == 4
+        ruleResult.Should().Match<RuleResult<int>>(r => r.IsSuccess == false && r.EvaluationCount == 4 && r.SetResultChain!.SetName == "SetThree" && r.SetResultChain.PreviousSetResult!.SetName == "SetTwo"
+                                                && r.SetResultChain!.PreviousSetResult!.PreviousSetResult!.SetName == "SetOne" && r.FailureMessages.Count == 4
                                                 && r.FailureMessages[1] == "Customer number should be 111");
 
     }

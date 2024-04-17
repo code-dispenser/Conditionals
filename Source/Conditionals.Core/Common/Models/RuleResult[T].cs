@@ -19,10 +19,10 @@ namespace Conditionals.Core.Common.Models;
 /// <param name="isDisabled">A boolean indicating if the rule is disabled.</param>
 /// <param name="failureMessages">A list of failure messages from all failed condition evaluations.</param>
 /// <param name="exceptions">A list of any exceptions that occurred during the processing of the rule, condition sets and conditions.</param>
-/// <param name="conditionSetChain">The chain of <see cref="ConditionSetResult{T} "/> instances.</param>
+/// <param name="setResultChain">The chain of <see cref="ConditionSetResult{T} "/> instances.</param>
 /// <param name="previousRuleResult">The previous <see cref="RuleResult{T}" /> instance. Used when chaining rules, the default is null.</param>
 public class RuleResult<T> (string ruleName, bool isSuccess, T failureValue, string finalSetName, T setValue, string tenantID, long ruleTimeMicroseconds, int evaluationCount,
-                           bool isDisabled, List<string> failureMessages, List<Exception> exceptions, ConditionSetResult<T>? conditionSetChain,  RuleResult<T>? previousRuleResult = null) 
+                           bool isDisabled, List<string> failureMessages, List<Exception> exceptions, ConditionSetResult<T>? setResultChain,  RuleResult<T>? previousRuleResult = null) 
 {
     /// <summary>
     /// Gets or sets the previous <see cref="RuleResult{T}"/> in the result chain.
@@ -57,7 +57,7 @@ public class RuleResult<T> (string ruleName, bool isSuccess, T failureValue, str
     /// <summary>
     /// Gets the chain of <see cref="ConditionSetResult{T}"/> instances.
     /// </summary>
-    public ConditionSetResult<T>? ConditionSetChain { get;  internal set; } = conditionSetChain;
+    public ConditionSetResult<T>? SetResultChain { get;  internal set; } = setResultChain;
 
     /// <summary>
     /// Gets a boolean indicating the success or failure of the rule.
