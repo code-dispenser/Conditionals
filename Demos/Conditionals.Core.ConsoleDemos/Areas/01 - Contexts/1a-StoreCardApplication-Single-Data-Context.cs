@@ -40,7 +40,7 @@ public class StoreCardApplicationSingleContext(ConditionEngine conditionEngine)
             * has a SingleContext factory method that simplifies creation.
          */
         
-        var conditionData = ConditionData.SingleContext(applicantData!);//equivalent to: new ConditionData(new DataContext[] { new DataContext(Data: Data:applicantData!, ConditionName:"") });
+        var conditionData = ConditionData.SingleContext(applicantData!);//equivalent to: new ConditionData(new DataContext[] { new DataContext(Data:applicantData!, ConditionName:"") });
 
         /*
             * You can evaluate a rule using the rules evaluate method but for this demo we will use the engines evaluate method i.e adding a rule to the engines cache of rules and then

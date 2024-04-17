@@ -4,7 +4,7 @@
 /// Base class used for rule events.
 /// Initialises the implementation of the <see cref="RuleEventBase{T} "/> abstract class.
 /// </summary>
-/// <typeparam name="T">The type of event that will either be an implementation of <see cref="RuleEventBase{T}"/> or <see cref="ConditionEventBase{T}"/></typeparam>
+/// <typeparam name="T">The value Type used for the success and failure values</typeparam>
 /// <param name="senderName">The name of the rule that raised the event.</param>
 /// <param name="isSuccessEvent">A boolean indicating whether the evaluation of the rule was successful or unsuccessful.</param>
 /// <param name="successValue">The success value.</param>

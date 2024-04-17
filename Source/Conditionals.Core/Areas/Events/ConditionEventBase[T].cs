@@ -8,7 +8,7 @@ namespace Conditionals.Core.Areas.Events;
 /// Base class used for condition events.
 /// Initialises the implementation of the <see cref="ConditionEventBase{T} "/> abstract class.
 /// </summary>
-/// <typeparam name="T">The type of event that will either be an implementation of <see cref="RuleEventBase{T}"/> or <see cref="ConditionEventBase{T}"/></typeparam>
+/// <typeparam name="TContext">The Type of data contained within the jsonContextData</typeparam>
 /// <param name="senderName">The name of the condition that raised the event.</param>
 /// <param name="isSuccessEvent">A boolean indicating whether the condition evaluation succeeded or failed.</param>
 /// <param name="jsonContextData">The data used in the evaluation of the condition in Json format.</param>
@@ -16,7 +16,7 @@ namespace Conditionals.Core.Areas.Events;
 /// <param name="conditionExceptions">A list that contains any exceptions that may have occurred during the processing and evaluation of a condition.</param>
 /// <param name="conversionException">A property used to store either an exception that may occur trying to serialize the condition data or any exception that may occur during the deserialization.</param>
 /// <inheritdoc cref="IEvent" />
-public abstract class ConditionEventBase<T>(string senderName, bool isSuccessEvent, string jsonContextData, string tenantID, List<Exception> conditionExceptions, Exception? conversionException = null) : IEvent
+public abstract class ConditionEventBase<TContext>(string senderName, bool isSuccessEvent, string jsonContextData, string tenantID, List<Exception> conditionExceptions, Exception? conversionException = null) : IEvent
 {
  
     private readonly string?         _jsonContextData     = jsonContextData;
@@ -45,7 +45,7 @@ public abstract class ConditionEventBase<T>(string senderName, bool isSuccessEve
     /// </summary>
     /// <param name="contextData">The type of data.</param>
     /// <returns>True if the data is non null and there were no serialization or deserialization issues, otherwise false.</returns>
-    public bool TryGetData(out T? contextData)
+    public bool TryGetData(out TContext? contextData)
     {
         contextData = default;
 
@@ -53,7 +53,7 @@ public abstract class ConditionEventBase<T>(string senderName, bool isSuccessEve
         
         try
         {
-            contextData = JsonSerializer.Deserialize<T>(_jsonContextData!);
+            contextData = JsonSerializer.Deserialize<TContext>(_jsonContextData!);
             if (contextData == null) throw new DeserializationToNullException(GlobalStrings.Json_deserialized_To_Null_Exception_Message);
         }
         catch (Exception exception) 
