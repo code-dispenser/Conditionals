@@ -28,8 +28,9 @@ public class StoreCardApplicationMultipleDataContexts(ConditionEngine conditionE
         var storeCardRule = new Rule<None>("StoreCreditCardRule",None.Value,new ConditionSet<None>("ApplicantRequirements",None.Value,conditions));
 
         /*
-            * We need three separate data contexts for this rule so we will use the ConditionDataBuilder. As these are three separate data types and only a single instance of each
-            * we do not need match the type (instance of type) to the condition (by name). Again this will be discussed later, these can be added in any order.
+            * We need three separate data contexts for this rule so we will use the ConditionDataBuilder for readability. As there are three separate data types and only a single instance of each
+            * we do not need to match the instance of a type to a condition by name, the AddForAny/AndForAny methods are fine. However, you could if you so wish use the 
+            * AddForCondition or AndForCondition methods and specify the condition name that the data is for.
         */
   
         var customerID = 2;//Choose customer with ID 1,2,3, or 4
@@ -37,6 +38,14 @@ public class StoreCardApplicationMultipleDataContexts(ConditionEngine conditionE
                                                     .AndForAny(DemoData.GetOrderHistory(customerID))
                                                         .AndForAny(DemoData.GetCustomer(customerID))
                                                             .Create();
+        /*
+            * The above could be written as
+            * var conditionData2 = new ConditionData(new DataContext[] {new DataContext(Data: DemoData.GetAddress(customerID),ConditionName: ""),
+            *                                                           new DataContext(DemoData.GetOrderHistory(customerID)),
+            *                                                           new DataContext(DemoData.GetCustomer(customerID)) });                                                         
+            * or
+            * var conditionData = new ConditionData([new(DemoData.GetAddress(customerID)), new(DemoData.GetOrderHistory(customerID)), new(DemoData.GetCustomer(customerID))])
+        */
 
         _conditionEngine.AddOrUpdateRule(storeCardRule);
 
