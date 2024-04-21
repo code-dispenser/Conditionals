@@ -21,14 +21,16 @@ public class MyCustomPredicateEvaluator<TContext> : ConditionEvaluatorBase<TCont
         /*
             * Each condition has a ConditionType property (enum). ConditionType.LambdaPredicate means the condition has a compiled predicate. 
             * In this instance we used the CustomPredicateCondition which automatically sets the ConditionType to LambdaPredicate. 
-            * CustomCondition sets the ConditionType to CustomExpression and as such the CompiledPredicate property is null.
+            * CustomCondition on the other hand sets the ConditionType to CustomExpression and as such the CompiledPredicate property is null.
          */
 
         /*
             * You can access any additional information needed for the evaluator that you may have added to the Dictionary<string,string> AdditionalInfo property of the condition. 
         */ 
         var valueOne = condition.AdditionalInfo.TryGetValue("KeyOne", out var keyValue) ? keyValue : "[null]";
-
+        /*
+            * You may wish to check the ConditionType property to ensure its a predicate to ensure you have a CompiledPredicate. 
+        */
         var isSuccess = condition.CompiledPredicate!(data);
 
         /*
