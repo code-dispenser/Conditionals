@@ -17,8 +17,9 @@ public class CheckTotalConditionEventDynamicHandler : IEventHandler<CheckTotalCo
         /*
             * The ConversionException gets set if there is an error trying to serialize the data using the default Json ... 
             * It also gets set if there is an error trying to deserialize the json string back to the type of data serialized.
+            * The Order is a record type so just using its ToString to have it all printed using the WriteLineAsync method.
         */
-        string deserializedData = theEvent.TryGetData(out var order) ? order!.ToString() : theEvent.ConversionException!.Message;
+        string deserializedData = theEvent.TryGetData(out Order? order) ? order!.ToString() : theEvent.ConversionException!.Message;
 
         await Console.Out.WriteLineAsync(deserializedData);
         await Console.Out.WriteLineAsync("");
