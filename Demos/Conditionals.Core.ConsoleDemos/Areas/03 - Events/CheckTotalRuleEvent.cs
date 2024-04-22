@@ -4,9 +4,7 @@ using Conditionals.Core.ConsoleDemos.Common.Models;
 
 namespace Conditionals.Core.ConsoleDemos.Areas.Events;
 
-public class CheckTotalRuleEvent : RuleEventBase<None>
+public class CheckTotalRuleEvent(string senderName, bool isSuccessEvent, None successValue, None failureValue, string tenantID, List<Exception> executionExceptions) 
+    : RuleEventBase<None>(senderName, isSuccessEvent, successValue, failureValue, tenantID, executionExceptions)
 {
-    public CheckTotalRuleEvent(string senderName, bool isSuccessEvent, None successValue, None failureValue, string tenantID, List<Exception> executionExceptions) : base(senderName, isSuccessEvent, successValue, failureValue, tenantID, executionExceptions)
-    {
-    }
 }
