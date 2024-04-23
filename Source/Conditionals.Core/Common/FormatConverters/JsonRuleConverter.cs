@@ -31,7 +31,8 @@ internal static class JsonRuleConverter
         }
         catch (MissingExpressionToEvaluateException) { throw; }
         catch (ContextTypeAssemblyNotFoundException) { throw; }
-        catch (EventNotFoundException) { throw; }
+        catch (EventNotFoundException)               { throw; }
+        catch (MissingConditionSetsException)        { throw; }
         catch (Exception exception)
         {
             throw new RuleFromJsonException(GlobalStrings.Rule_From_Json_Exception_Message, exception);
@@ -45,6 +46,7 @@ internal static class JsonRuleConverter
         var tenantID            = jsonRule.TenantID  ?? GlobalStrings.Default_TenantID;
         var cultureID           = jsonRule.CultureID ?? GlobalStrings.Default_CultureID;
         var ruleEventDetails    = EventDetailsFromJson(jsonRule.RuleEventDetails);
+        int conditionSetCount   = jsonRule.ConditionSets.Count;
 
         if (jsonRule.RuleEventDetails != null && ruleEventDetails == null)
         {
@@ -52,7 +54,9 @@ internal static class JsonRuleConverter
         }
         var rule = (Rule<T>)Activator.CreateInstance(typeof(Rule<T>), ruleName, failureValue, ruleEventDetails, tenantID, cultureID)!;
 
-        for (int setIndex = 0; setIndex < jsonRule.ConditionSets?.Count; setIndex++)
+        if (conditionSetCount == 0) throw new MissingConditionSetsException(GlobalStrings.Missing_ConditionSets_Exception_Message);
+
+        for (int setIndex = 0; setIndex < conditionSetCount; setIndex++)
         {
             var jsonRuleConditionSet = jsonRule.ConditionSets[setIndex];
             var setName = jsonRuleConditionSet.SetName;

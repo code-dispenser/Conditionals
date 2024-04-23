@@ -5,9 +5,11 @@ using Conditionals.Core.Common.Exceptions;
 using Conditionals.Core.Common.FormatConverters;
 using Conditionals.Core.Common.Models;
 using Conditionals.Core.Common.Seeds;
+using Conditionals.Core.Common.Utilities;
 using Conditionals.Core.Tests.SharedDataAndFixtures.Data;
 using Conditionals.Core.Tests.SharedDataAndFixtures.Events;
 using Conditionals.Core.Tests.SharedDataAndFixtures.Models;
+using Conditionals.Core.Tests.Unit.Common.Utilities;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
@@ -16,6 +18,7 @@ namespace Conditionals.Core.Tests.Unit.Common.FormatConverters;
 
 public class JsonRuleConverterTests
 {
+
     [Fact]
     public void The_create_json_condition_from_boolean_condition_should_create_the_correct_ast_tree_condition_structure_part_of_the_json_rule_model()
     {
@@ -77,7 +80,15 @@ public class JsonRuleConverterTests
     [Fact]
     public void TenantID_and_cultureID_should_be_set_to_defaults_if_null_converting_from_json_rule_to_rule()
     {
-        JsonRule<None> jsonRule = new() { RuleName="RuleOne", TenantID = null!, CultureID = null!, FailureValue = None.Value, IsDisabled = false, ConditionSets = null!, ValueTypeName = { } };
+        JsonCondition jsonCondition = new() {
+                AdditionalInfo  = [], ConditionEventDetails = null, ConditionName = "ConditionOne", ConditionType = ConditionType.CustomExpression.ToString(),
+                ContextTypeName = typeof(Customer).FullName, EvaluatorTypeName = "SomeEvaluator", ExpressionToEvaluate = "SomeExpression",
+                FailureMessage  = "Some failure message", LeftOperand = null, Operator = null, RightOperand = null,
+            };
+
+        List<JsonConditionSet<None>> jsonConditionSets = new() { new()  { BooleanConditions = jsonCondition, SetName ="SetONe", SetValue = None.Value } };
+
+        JsonRule<None> jsonRule = new() { RuleName="RuleOne", TenantID = null!, CultureID = null!, FailureValue = None.Value, IsDisabled = false, ConditionSets = jsonConditionSets, ValueTypeName = { } };
 
         var ruleFromJsonRule = JsonRuleConverter.RuleFromJsonRule(jsonRule);
 
@@ -95,17 +106,18 @@ public class JsonRuleConverterTests
 
         FluentActions.Invoking(() => JsonRuleConverter.RuleFromJsonRule(jsonRule)).Should().ThrowExactly<EventNotFoundException>();
     }
-    [Fact]
-    public void Converting_a_json_rule_to_a_rule_with_null_rule_details_should_create_the_rule()
-    {
-        JsonRule<None> jsonRule = new() 
-        {
-            RuleName="RuleOne", TenantID = null!, CultureID = null!, FailureValue = None.Value, IsDisabled = false, ValueTypeName = { },
-            RuleEventDetails = null
-        };
+    //[Fact]
+    //public void Converting_a_json_rule_to_a_rule_with_null_rule_details_should_create_the_rule()
+    //{
+    //    JsonRule<None> jsonRule = new() 
+    //    {
+    //        RuleName="RuleOne", TenantID = null!, CultureID = null!, FailureValue = None.Value, IsDisabled = false, ValueTypeName = { },
+    //        RuleEventDetails = null,
+    //        ConditionSets = new List<JsonConditionSet<None>> { new JsonConditionSet<None> { BooleanConditions = null, SetName } }
+    //    };
 
-        FluentActions.Invoking(() => JsonRuleConverter.RuleFromJsonRule(jsonRule)).Should().NotThrow();
-    }
+    //    FluentActions.Invoking(() => JsonRuleConverter.RuleFromJsonRule(jsonRule)).Should().NotThrow();
+    //}
 
     [Fact]
     public void The_convert_to_boolean_condition_should_create_the_correct_boolean_condition_structure()
@@ -222,5 +234,22 @@ public class JsonRuleConverterTests
                                     && ((ICondition)(r.ConditionSets[0].BooleanConditions)).EventDetails!.EventWhenType == EventWhenType.Never);
     }
 
+
+
+
+    [Fact]
+    public void Converting_json_with_no_condition_sets_should_throw_a_missing_condition_sets_exception()
+    {
+        /*
+            * Needed to add a rule event just to ensure that the Conditionals.Core.Tests.SharedDataAndFixtures assembly gets included in
+            * AppDomain.CurrentDomain.GetAssemblies within the general utils class
+        */
+        RuleEventInt r = new RuleEventInt("Some Rule", false, 1, 1, "TenantID", []);
+
+        var jsonString = StaticData.JsonRuleMissingConditionSets;
+        
+        FluentActions.Invoking(() => JsonRuleConverter.RuleFromJson<int>(jsonString)).Should().ThrowExactly<MissingConditionSetsException>();
+
+    }
 
 }

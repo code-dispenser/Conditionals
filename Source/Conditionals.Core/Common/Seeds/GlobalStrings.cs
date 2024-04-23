@@ -33,6 +33,9 @@ internal static class GlobalStrings
     public const string Context_Type_Assembly_Not_Found_Exception_Message   = "The assembly for the type of data context used for the condition {0} could not be found in the assemblies for the current app domain.";
     public const string Event_Not_Found_Exception_Message                   = "The event named {0} could not be found whilst ingesting the json rule";
     public const string Invalid_System_DataType_Exception_Message           = "The data type for the rule named: {0} is invalid.";
+
+    public const string Missing_ConditionSets_Exception_Message             = "No condition sets were found in the rule.";
+
     //public const string In_Complete_Rule_Conversion_Exception_Message       = "A rule needs to contain at least one condition set with a condition before it can be converted";
 
     public const string Rule_Name_Property_Is_Missing_Or_Null_Message       = "No rule name";

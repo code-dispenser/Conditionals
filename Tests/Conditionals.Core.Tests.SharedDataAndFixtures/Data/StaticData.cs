@@ -643,4 +643,19 @@ public static readonly string JsonWithMissingRegexOptionsKey = """
                                                                   ]
                                                                 }
                                                                 """;
+
+    public static readonly string JsonRuleMissingConditionSets = """
+                                                                {
+                                                                    "RuleName": "RuleOne",
+                                                                    "TenantID": "All_Tenants",
+                                                                    "CultureID": "en-GB",
+                                                                    "IsDisabled": false,
+                                                                    "FailureValue": 10,
+                                                                    "ValueTypeName": "Int32",
+                                                                    "RuleEventDetails": {
+                                                                    "EventTypeName": "Conditionals.Core.Tests.SharedDataAndFixtures.Events.RuleEventInt",
+                                                                    "EventWhenType": "OnFailure"
+                                                                    }
+                                                                }
+                                                                """;
 }

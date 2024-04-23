@@ -132,3 +132,11 @@ public class ContextTypeAssemblyNotFoundException(string message, Exception? inn
 /// <param name="message">The message that describes the error.</param>
 /// <param name="innerException">The exception that is the cause of the current exception, or a null reference if no inner exception is specified.</param>
 public class EventNotFoundException(string message, Exception? innerException = null) : Exception(message, innerException) {}
+
+
+/// <summary>
+/// Represents an exception that is thrown where there are no condition sets in the json." /> assemblies.
+/// Initialises a new instance of the <see cref="MissingConditionSetsException"/> class with a specified error message.
+/// </summary>
+/// <param name="message">The message that describes the error.</param>
+public class MissingConditionSetsException(string message) : Exception(message) { }
