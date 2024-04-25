@@ -2,18 +2,16 @@
 
 [download-image]: https://img.shields.io/nuget/dt/Conditionals.Core
 [download-url]: https://www.nuget.org/packages/Conditionals.Core
+
 <h1>
 <img src="https://raw.github.com/code-dispenser/Conditionals/main/Assets/icons-64.png" align="center" alt="Conditionals icon" /> Conditionals
 </h1>
 <!--
-# ![icon](https://raw.github.com/code-dispenser/Conditionals/main/Assets/icon-64.png) Conditionals
+# ![icon](https://raw.githubusercontent.com/code-dispenser/Conditionals/main/Assets/icons-64.png) Conditionals
 -->
 <!-- H1 for git hub, but for nuget the markdown is fine as it centers the image, uncomment as appropriate and do the same at the bottom of this file for the icon author -->
 
 ## Overview
-
-Docs in Progress so not on nuget yet ....
-
 
 Conditionals is essentially a Boolean expression-based rules engine, based on my other project [Devs' Rule](https://github.com/code-dispenser/DevsRule). It operates by evaluating conditions, which can be conceptualised as "condition trees." These 
 trees consist of left and right operands, combined with the logical short-circuiting AndAlso (&&) and OrElse (||) operators.
@@ -125,8 +123,10 @@ project/nuget package.
 
 <img src="https://raw.githubusercontent.com/code-dispenser/Conditionals/main/Assets/icons-64.png" align="middle" height="32px" alt="Conditionals icon" />
 <a target="_blank" href="https://icons8.com/icon/kxE6S5YOUvM6/if">If</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+
 <!--
-![icon](https://raw.github.com/code-dispenser/Conditionals/main/Assets/icon-48.png) Thanks also to Peerapak Takpho the icon creator, which I found on [freepik.com](https://www.freepik.com/icon/setting_7012934).
+![icon](https://raw.githubusercontent.com/code-dispenser/Conditionals/main/Assets/icon-48.png) If [icon by Icons8](https://icons8.com)
 -->
+
 
 

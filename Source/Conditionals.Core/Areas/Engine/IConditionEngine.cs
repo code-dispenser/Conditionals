@@ -130,6 +130,11 @@ namespace Conditionals.Core.Areas.Engine
         /// The rules value type is obtained from the json.
         /// </summary>
         /// <param name="ruleJson">The string representing the rule in the Json format.</param>
+        /// <exception cref="MissingExpressionToEvaluateException">Thrown when the expression to evaluate value is missing.</exception>
+        /// <exception cref="ContextTypeAssemblyNotFoundException">Thrown when the context type name of the condition is missing or not found in the current app domain assemblies.</exception>
+        /// <exception cref="EventNotFoundException">Thrown when the event type for a rule or condition was not found in the current app domain assemblies.</exception>
+        /// <exception cref="MissingConditionSetsException">Thrown when the condition set is missing or empty.</exception>
+        /// <exception cref="RuleFromJsonException">Thrown when an unknown exception was caught, you should check the inner exception for details.</exception>
         void IngestRuleFromJson(string ruleJson);
 
         /// <summary>
@@ -137,6 +142,11 @@ namespace Conditionals.Core.Areas.Engine
         /// </summary>
         /// <typeparam name="T">The return data type of the rule.</typeparam>
         /// <param name="ruleJson">The string representing the rule in the Json format.</param>
+        /// <exception cref="MissingExpressionToEvaluateException">Thrown when the expression to evaluate value is missing.</exception>
+        /// <exception cref="ContextTypeAssemblyNotFoundException">Thrown when the context type name of the condition is missing or not found in the current app domain assemblies.</exception>
+        /// <exception cref="EventNotFoundException">Thrown when the event type for a rule or condition was not found in the current app domain assemblies.</exception>
+        /// <exception cref="MissingConditionSetsException">Thrown when the condition set is missing or empty.</exception>
+        /// <exception cref="RuleFromJsonException">Thrown when an unknown exception was caught, you should check the inner exception for details.</exception>
         void IngestRuleFromJson<T>(string ruleJson);
 
 
