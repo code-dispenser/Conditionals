@@ -15,6 +15,7 @@ public class EventAggregatorTests
     private readonly IEventAggregator _eventAggregator;
 
     public int MyHandlerCallCount { get; set; } = 0;
+    public int ParentClassMyHandlerCallCount { get; set; } = 0;
 
     public bool EventHandlerCancelled { get; set; } = false;
 
@@ -54,16 +55,16 @@ public class EventAggregatorTests
 
 
     [Fact]
-    public void DI_registered_event_handlers_should_get_called()
+    public async Task DI_registered_event_handlers_should_get_called()
     {
         var conditionResultEvent = new ConditionEventCustomer("SomeSender", true, StaticData.CustomerOneAsJsonString(), "TenantID", [], null);
 
         MyHandlerCallCount = 0;
-         _eventAggregator.Publish(conditionResultEvent, CancellationToken.None);
+        _eventAggregator.Publish(conditionResultEvent, CancellationToken.None);
         /*
             * publish is fire and forget so need a delay for the handler to be created before checking, set higher than needed 
          */
-        Thread.Sleep(200);
+        await Task.Delay(100);
         this.MyHandlerCallCount.Should().Be(1);
     }
 
@@ -78,42 +79,40 @@ public class EventAggregatorTests
     }
 
     [Fact]
-    public void Should_be_able_to_pass_a_cancellation_token_to_the_event()
+    public async Task Should_be_able_to_pass_a_cancellation_token_to_the_event()
     {
         CancellationTokenSource tokenSource = new CancellationTokenSource();
-        
-        var token                = tokenSource.Token;
+
+        var token = tokenSource.Token;
         var conditionResultEvent = new ConditionEventCustomer("SomeSender", true, StaticData.CustomerOneAsJsonString(), "TenantID", [], null);
-        MyHandlerCallCount       = 0;
         EventHandlerCancelled    = false;
-        
+
         _eventAggregator.Publish(conditionResultEvent, token);
         tokenSource.Cancel();
         /*
             * publish is fire and forget so need a delay for the handler to be created before checking, set higher than needed 
          */
-        Thread.Sleep(200);
-        this.MyHandlerCallCount.Should().Be(0);
-        this.EventHandlerCancelled = true;
+        await Task.Delay(150);
+        this.EventHandlerCancelled.Should().BeTrue();
     }
 
     [Fact]
-    public void Trying_to_add_a_duplicate_handler_should_just_return_a_subscription_without_adding_a_second_handler()
+    public async Task Trying_to_add_a_duplicate_handler_should_just_return_a_subscription_without_adding_a_second_handler()
     {
-        var ruleEvent       = new RuleEventInt("TheRule", false,42,10, GlobalStrings.Default_TenantID, []);
-        var handlerOneSub   = _eventAggregator.Subscribe<RuleEventInt>(handlerOne);
-        var duplicateSub    = _eventAggregator.Subscribe<RuleEventInt>(handlerOne);
+        var ruleEvent = new DuplicateRuleEventInt("TheRule", false, 42, 10, GlobalStrings.Default_TenantID, []);
+        var handlerOneSub = _eventAggregator.Subscribe<DuplicateRuleEventInt>(handlerOne);
+        var duplicateSub = _eventAggregator.Subscribe<DuplicateRuleEventInt>(handlerOne);
 
         this.MyHandlerCallCount = 0;
         _eventAggregator.Publish(ruleEvent, CancellationToken.None);
-        
-        Thread.Sleep(200);
-        
+
+        await Task.Delay(100);
+
         var firstCount = this.MyHandlerCallCount;
 
         handlerOneSub.Dispose();
 
-         _eventAggregator.Publish(ruleEvent, CancellationToken.None);
+        _eventAggregator.Publish(ruleEvent, CancellationToken.None);
         var secondCount = this.MyHandlerCallCount;
 
         duplicateSub.Dispose();
@@ -124,7 +123,7 @@ public class EventAggregatorTests
             secondCount.Should().Be(firstCount);
         }
 
-        async Task handlerOne(RuleEventInt ruleEvent, CancellationToken cancellationToken)
+        async Task handlerOne(DuplicateRuleEventInt ruleEvent, CancellationToken cancellationToken)
         {
             this.MyHandlerCallCount++;
 

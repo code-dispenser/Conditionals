@@ -15,7 +15,10 @@ public sealed class RuleEventInt(string senderName, bool isSuccessEvent, int suc
 
     : RuleEventBase<int>(senderName, isSuccessEvent, successValue, failureValue, tenantID, executionExceptions) { }
 
+public sealed class DuplicateRuleEventInt(string senderName, bool isSuccessEvent, int successValue, int failureValue, string tenantID, List<Exception> executionExceptions)
 
+    : RuleEventBase<int>(senderName, isSuccessEvent, successValue, failureValue, tenantID, executionExceptions)
+{ }
 public sealed class BadEventInt : RuleEventBase<int>
 {
     public BadEventInt(string senderName, bool isSuccessEvent, int successValue, int failureValue, string tenantID, List<Exception> executionExceptions) : base(senderName,isSuccessEvent,successValue,failureValue,tenantID,executionExceptions)
