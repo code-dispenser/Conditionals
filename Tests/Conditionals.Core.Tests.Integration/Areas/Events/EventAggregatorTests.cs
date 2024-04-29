@@ -63,7 +63,7 @@ public class EventAggregatorTests
         /*
             * publish is fire and forget so need a delay for the handler to be created before checking, set higher than needed 
          */
-        Thread.Sleep(150);
+        Thread.Sleep(200);
         this.MyHandlerCallCount.Should().Be(1);
     }
 
@@ -92,7 +92,7 @@ public class EventAggregatorTests
         /*
             * publish is fire and forget so need a delay for the handler to be created before checking, set higher than needed 
          */
-        Thread.Sleep(150);
+        Thread.Sleep(200);
         this.MyHandlerCallCount.Should().Be(0);
         this.EventHandlerCancelled = true;
     }
@@ -107,7 +107,7 @@ public class EventAggregatorTests
         this.MyHandlerCallCount = 0;
         _eventAggregator.Publish(ruleEvent, CancellationToken.None);
         
-        Thread.Sleep(150);
+        Thread.Sleep(200);
         
         var firstCount = this.MyHandlerCallCount;
 

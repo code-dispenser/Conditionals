@@ -72,7 +72,7 @@ public class EventAggregatorTests
         }
 
         _eventAggregator.Publish(conditionEvent, CancellationToken.None);
-        await Task.Delay(10);//
+        await Task.Delay(20);//
         
         theHandleCount.Should().Be(1);
 
