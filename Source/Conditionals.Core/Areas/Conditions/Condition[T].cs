@@ -142,8 +142,8 @@ public class Condition<TContext> : BooleanConditionBase, ICondition
             evaluationMicroseconds  = (endEvalTicks - startEvalTicks) / (Stopwatch.Frequency / 1_000_000);
             totalMicroseconds       = (endingTicks - startAllTicks) / (Stopwatch.Frequency / 1_000_000);
 
-            conditionResult = new ConditionResult(ConditionName, assemblyQualifiedName, ExpressionToEvaluate, context.Data, EvaluatorTypeName, evaluationResult.IsSuccess,
-                                                  failureMessage, evaluationMicroseconds, totalMicroseconds, conditionData.TenantID, previousResult, exceptions);
+            conditionResult = new ConditionResult(ConditionName, assemblyQualifiedName!, ExpressionToEvaluate, context.Data, EvaluatorTypeName, evaluationResult.IsSuccess,
+                                                  failureMessage!, evaluationMicroseconds, totalMicroseconds, conditionData.TenantID, previousResult, exceptions);
         }
         catch (Exception exception)
         {
