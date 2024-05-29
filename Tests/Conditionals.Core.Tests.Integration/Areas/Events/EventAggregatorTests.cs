@@ -92,7 +92,7 @@ public class EventAggregatorTests
         /*
             * publish is fire and forget so need a delay for the handler to be created before checking, set higher than needed 
          */
-        await Task.Delay(150);
+        await Task.Delay(300);
         this.EventHandlerCancelled.Should().BeTrue();
     }
 
