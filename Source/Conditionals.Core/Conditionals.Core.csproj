@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <SignAssembly>True</SignAssembly>
     <Title>Conditionals</Title>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>Paul Kent</Authors>
     <Description>Conditionals is essentially a Boolean expression-based rules engine.
 Store and evaluate rules in code or from ingested JSON, enabling seamless integration and dynamic rule management.</Description>
@@ -17,19 +17,20 @@ Store and evaluate rules in code or from ingested JSON, enabling seamless integr
 	<GenerateDocumentationFile>False</GenerateDocumentationFile>
 	<PackageReadmeFile>ReadMe.md</PackageReadmeFile>
 	<PackageIcon>icons-64.png</PackageIcon>
-	<FileVersion>1.0.0</FileVersion>	
+	<FileVersion>1.0.1</FileVersion>	
 	<Copyright>Copyright (c) 2024 Paul Kent.</Copyright>
-	<PackageVersion>1.0.0</PackageVersion>
-	<AssemblyVersion>1.0.0</AssemblyVersion>
-    <InformationalVersion>1.0.0</InformationalVersion>
-	<Version>1.0.0</Version>
+	<PackageVersion>1.0.1</PackageVersion>
+	<AssemblyVersion>1.0.1</AssemblyVersion>
+    <InformationalVersion>1.0.1</InformationalVersion>
+	<Version>1.0.1</Version>
 	<RepositoryUrl>https://github.com/code-dispenser/Conditionals</RepositoryUrl>  
 	<PackageProjectUrl>https://github.com/code-dispenser/Conditionals</PackageProjectUrl>
 	<PublishRepositoryUrl>true</PublishRepositoryUrl>
 	<Deterministic>true</Deterministic>
 	<EmbedUntrackedSources>true</EmbedUntrackedSources>
 	<DebugType>embedded</DebugType>
-	<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>  
+	<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+	<PackageReleaseNotes>Update to .net 9</PackageReleaseNotes>  
   </PropertyGroup>
 
   <ItemGroup>
