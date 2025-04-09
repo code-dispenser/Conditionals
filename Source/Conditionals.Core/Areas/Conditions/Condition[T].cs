@@ -16,6 +16,7 @@ namespace Conditionals.Core.Areas.Conditions;
 /// <typeparam name="TContext">The type of data used for in the condition evaluation.</typeparam>
 public class Condition<TContext> : BooleanConditionBase, ICondition
 {
+    private static readonly ParsingConfig _parsingConfig =  new() { AllowEqualsAndToStringMethodsOnObject = true };
     ///<inheritdoc />
     public Dictionary<string, string> AdditionalInfo { get; }//TODO immutable fix?
     ///<inheritdoc />
@@ -63,13 +64,14 @@ public class Condition<TContext> : BooleanConditionBase, ICondition
 
     private static Func<TContext, bool> BuildPredicateFromString(string conditionExpression)
     {
+       
         string[] expressionParts = conditionExpression.Split("=>", StringSplitOptions.TrimEntries);
 
         var identifier = expressionParts[0];
 
         ParameterExpression parameter = Expression.Parameter(typeof(TContext), identifier);
 
-        LambdaExpression lambdaExpression = DynamicExpressionParser.ParseLambda([parameter], typeof(bool), conditionExpression);
+        LambdaExpression lambdaExpression = DynamicExpressionParser.ParseLambda(_parsingConfig, [parameter], typeof(bool), conditionExpression);
 
         return (Func<TContext, bool>)lambdaExpression.Compile();
     }
