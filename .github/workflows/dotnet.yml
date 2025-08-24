@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4.2.2
+    - uses: actions/checkout@v5.0.0
     - name: Setup .NET
       uses: actions/setup-dotnet@v4.3.1
       with:
@@ -27,7 +27,7 @@ jobs:
     - name: Test
       run: dotnet test --no-build --configuration Release --verbosity normal --collect:"XPlat Code Coverage" --results-directory TestResults
     - name: ReportGenerator
-      uses: danielpalme/ReportGenerator-GitHub-Action@5.4.5
+      uses: danielpalme/ReportGenerator-GitHub-Action@5.4.12
       with:
        reports: TestResults/**/coverage.cobertura.xml
        targetdir: CoverageResults
